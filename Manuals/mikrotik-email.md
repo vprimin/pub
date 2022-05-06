@@ -16,8 +16,7 @@ time.google.com
 2. Далее настроим e-mail клиента на примере smtp сервера яндекс
 Зайдем в tools/email
 
------img
-
+![](https://raw.githubusercontent.com/vprimin/pub/main/Manuals/images/send%20e-mail.png)
 
 Убедимся, что все в порядке  нажав на кнопку "Send Email" 
 

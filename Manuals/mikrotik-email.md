@@ -66,7 +66,7 @@ time.google.com
 Идем в System/Scheduler и настраиваем периодичность:
 
 
-![](https://github.com/vprimin/pub/blob/main/Manuals/images/mikrotik%scheduler.png)
+![](https://github.com/vprimin/pub/blob/main/Manuals/images/mikrotik%20scheduler.png)
 
 По сути в данном окне важны только два параметра (1-периодичность отправки, в данном примере это 30 дней и собственно следует указать какой именно скрипт будет выполняться в нижней части окна 
 

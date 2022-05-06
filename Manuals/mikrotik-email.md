@@ -16,11 +16,11 @@ time.google.com
 2. Далее настроим e-mail клиента на примере smtp сервера яндекс
 Зайдем в tools/email
 
-![](https://raw.githubusercontent.com/vprimin/pub/main/Manuals/images/send%20e-mail.png)
+![](https://github.com/vprimin/pub/blob/main/Manuals/images/e-mail%20settings.png)
 
 Убедимся, что все в порядке  нажав на кнопку "Send Email" 
 
-img----
+![](https://github.com/vprimin/pub/blob/main/Manuals/images/send%20e-mail.png)
 
 Если письмо пришло, то можем продолжать настройку дальше. 
 
@@ -32,7 +32,7 @@ img----
 
 где выполняем создание скрипта
 
-===img
+![](https://github.com/vprimin/pub/blob/main/Manuals/images/mikrotik-script.png)
 
 Можете скопировать данный текст заменив значения на свои 
 (адрес почты, пароль, имя файла и т.д)

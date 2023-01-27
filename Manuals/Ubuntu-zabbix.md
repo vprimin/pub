@@ -29,7 +29,7 @@ sudo -u postgres createdb -O zabbix zabbix
 ```
 И делаем экспорт из ранее скачанного архива в нашу БД
 ```
-zcat /usr/share/doc/zabbix-sql-scripts/postgresql/server.sql.gz | sudo -u zabbix psql zabbix
+zcat /usr/share/zabbix-sql-scripts/postgresql/server.sql.gz | sudo -u zabbix psql zabbix
 ```
 Далее заходим текстовым редактором в файл конфигурации zabbix и находим там значение 'DBPassword=' - убираем # - знак комментария и вводим наш пароль от базы данных. Сохраняем. 
 ```

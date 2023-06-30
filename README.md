@@ -1,10 +1,10 @@
 # Welcome to my repa
-![repa](https://github.com/vprimin/pub/blob/main/repa.png)
+![repa](https://github.com/vprimin/pub/blob/main/Manuals/images/repa.png)
 
 *Description: Public manuals, scripts etc.*
- 	[Markldown]
+ 	
 
 
 ```
-This is example of the code
+Please visit my channel: https://www.youtube.com/@skp-radio
 ```

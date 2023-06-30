@@ -1,5 +1,5 @@
 # Установка Zabbix 6.0 LTS Ubuntu Server 20.04
-![thb](https://github.com/vprimin/pub/blob/main/Manuals/thubnail.png)
+![thb](https://github.com/vprimin/pub/blob/main/Manuals/images/thubnail.png)
 
 *PostgeSQL nginx*
  

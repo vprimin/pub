@@ -1,7 +1,7 @@
 # Установка Zabbix 6.0 LTS Ubuntu Server 22.04 на Платформе AWS EC2 и установка SSL
 ![thb](https://github.com/vprimin/pub/blob/main/Manuals/images/awszabbix.jpg)
 
-*PostgeSQL nginx*
+*Всем привет. В данной статье рассмотрим как ставить заббикс в облаке на платформе AWS EC2 + Установим сертификаты SSL c помощью сервиса certbot*
  
 ```
 sudo su

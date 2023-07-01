@@ -70,23 +70,22 @@ nano /etc/zabbix/zabbix_server.conf
 ```
 nano /etc/zabbix/nginx.conf 
 ```
-В самом начале файла убераем знак комментария # и вводим наш адрес локальной сети.
-
+В шапке файла конфигурации нам надо изменить значения на те, которые приведены ниже:
 ```
 server {
 listen 443 default_server ssl;
-ssl_certificate /etc/letsencrypt/live/[b]zabbix.skp.kz[/b]/fullchain.pem;
-ssl_certificate_key /etc/letsencrypt/live/[b]zabbix.skp.kz[/b]/privkey.pem;
+ssl_certificate /etc/letsencrypt/live/**zabbix.skp.kz**/fullchain.pem;
+ssl_certificate_key /etc/letsencrypt/live/**zabbix.skp.kz**/privkey.pem;
 server_name     zabbix.skp.kz;
 ```
-Поросто замените путь на свой дое
+Поросто замените значение выделенное жирным на свой URL.
 
 Далее перезагружаем службу заббикс сервера и добавляем в автозапуск 
 ```
 systemctl restart zabbix-server zabbix-agent nginx php8.1-fpm
 ssystemctl enable zabbix-server zabbix-agent nginx php8.1-fpm
 ```
-Если все настроено верно по адресу  должен открыться  веб-интерфейс Zabbix: 
+Если все настроено верно по адресу  должен открыться  веб-интерфейс Zabbix подписанным SSL сертификатом 
 ```
 https://zabbix.dnsname.url
 ```

@@ -3,16 +3,39 @@
 
 *Всем привет. В данной статье рассмотрим как ставить заббикс в облаке на платформе AWS EC2 + Установим сертификаты SSL c помощью сервиса certbot*
  
+Перед тем как начать нам понадобится
+1. E-mail адрес для регистрации аккантуа на AWS
+2. Кредитная карта (желательно виртуальная)
+3. Домен второго или третьего уровная типа zabbix.domain.com (Доступ к ДНС серверу/регистратору домена)
+
+Заходим на console.aws.com и регистрируем аккаунт, включаем двухфакторку, бюджет алерты.
+Поднимаем виртуальную машину на Ubuntu 22.04 тариф t2.micro. Открываем порты, 22, 80, 443
+Присваеваем IP аддрес 
+Подключаемся по ssh (chmod 400)
+
+Обновляемся
 ```
 sudo su
-wget https://repo.zabbix.com/zabbix/6.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.0-1+ubuntu20.04_all.deb
-
-dpkg -i zabbix-release_6.0-1+ubuntu20.04_all.deb
 apt update
-apt install zabbix-server-pgsql zabbix-frontend-php php7.4-pgsql zabbix-nginx-conf zabbix-sql-scripts zabbix-agent
+apt upgrade
+reboot
 ```
-Далее установим сервер баз данных, создадим пользователя и таблицу. 
+Устанавливаем веб сервер Nginx
+```
+sudo su
+apt install nginx
+```
+Далее сразу установим сертификаты с помощью сервиса certbot
+https://certbot.eff.org/
 
+```
+sudo snap install core; sudo snap refresh core
+sudo snap install --classic certbot
+sudo ln -s /snap/bin/certbot /usr/bin/certbot
+sudo certbot --nginx
+```
+Сохраняем пути к сертификатам, они нам еще понадобятся.
+Далее ставим Субд
 ```
 wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
 
@@ -23,9 +46,17 @@ sudo apt install postgresql-13
 systemctl status postgresql
 sudo -u postgres createuser --pwprompt zabbix
 ```
-Тут вводим пароль два раза и запоминаем, он нам еще пригодиться, его нужно будет ввести в настройках файла конфигурации заббикса. Далее:создаем базу данных
+Тут вводим пароль два раза и запоминаем, он нам еще пригодиться, его нужно будет ввести в настройках файла конфигурации заббикса. 
+Далее:создаем базу данных
 ```
 sudo -u postgres createdb -O zabbix zabbix
+```
+Устанавливаем заббикс
+```
+wget https://repo.zabbix.com/zabbix/6.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.0-4+ubuntu22.04_all.deb
+dpkg -i zabbix-release_6.0-4+ubuntu22.04_all.deb
+apt update
+apt install zabbix-server-pgsql zabbix-frontend-php php8.1-pgsql zabbix-nginx-conf zabbix-sql-scripts zabbix-agent
 ```
 И делаем экспорт из ранее скачанного архива в нашу БД
 ```
@@ -42,24 +73,20 @@ nano /etc/zabbix/nginx.conf
 В самом начале файла убераем знак комментария # и вводим наш адрес локальной сети.
 
 ```
-listen 80;
-server_name 192.168.151.70; 
+server {
+listen 443 default_server ssl;
+ssl_certificate /etc/letsencrypt/live/[b]zabbix.skp.kz[/b]/fullchain.pem;
+ssl_certificate_key /etc/letsencrypt/live/[b]zabbix.skp.kz[/b]/privkey.pem;
+server_name     zabbix.skp.kz;
 ```
-в моем случае это подсеть 151 - вы  вводите ваш айпи адрес который вы настроили для вашего сервера.
+Поросто замените путь на свой дое
 
 Далее перезагружаем службу заббикс сервера и добавляем в автозапуск 
-
-Но перед этим я удалю веб сервер апачи, так как не хочу чтобы он у меня стоял рядом с nginx и конфиликтовал по 80 порту
-
 ```
-sudo apt remove apache2
-```
-Далее перезагружаем службу заббикс сервера и добавляем в автозапуск 
-```
-systemctl restart zabbix-server zabbix-agent nginx php7.4-fpm
-systemctl enable zabbix-server zabbix-agent nginx php7.4-fpm
+systemctl restart zabbix-server zabbix-agent nginx php8.1-fpm
+ssystemctl enable zabbix-server zabbix-agent nginx php8.1-fpm
 ```
 Если все настроено верно по адресу  должен открыться  веб-интерфейс Zabbix: 
 ```
-http://server_ip_or_name
+https://zabbix.dnsname.url
 ```

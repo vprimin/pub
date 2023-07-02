@@ -43,13 +43,13 @@ echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" 
 
 sudo apt update
 sudo apt install postgresql-13
-systemctl status postgresql
-sudo -u postgres createuser --pwprompt zabbix
+systemctl status postgresql 
 ```
 Тут вводим пароль два раза и запоминаем, он нам еще пригодиться, его нужно будет ввести в настройках файла конфигурации заббикса. 
-Далее:создаем базу данных
+Далее:создаем базу данных и пользователя
 ```
 sudo -u postgres createdb -O zabbix zabbix
+sudo -u postgres createuser --pwprompt zabbix
 ```
 Устанавливаем заббикс
 ```
@@ -74,18 +74,18 @@ nano /etc/zabbix/nginx.conf
 ```
 server {
 listen 443 default_server ssl;
-ssl_certificate /etc/letsencrypt/live/**zabbix.skp.kz**/fullchain.pem;
-ssl_certificate_key /etc/letsencrypt/live/**zabbix.skp.kz**/privkey.pem;
+ssl_certificate /etc/letsencrypt/live/zabbix.skp.kz/fullchain.pem;
+ssl_certificate_key /etc/letsencrypt/live/zabbix.skp.kz/privkey.pem;
 server_name     zabbix.skp.kz;
 ```
-Поросто замените значение выделенное жирным на свой URL.
+Поросто замените значение 'zabbix.skp.kz' на свой URL.
 
 Далее перезагружаем службу заббикс сервера и добавляем в автозапуск 
 ```
 systemctl restart zabbix-server zabbix-agent nginx php8.1-fpm
 ssystemctl enable zabbix-server zabbix-agent nginx php8.1-fpm
 ```
-Если все настроено верно по адресу  должен открыться  веб-интерфейс Zabbix подписанным SSL сертификатом 
+Если все настроено верно по вашему адресу должен открыться веб-интерфейс Zabbix подписанным SSL сертификатом 
 ```
 https://zabbix.dnsname.url
 ```

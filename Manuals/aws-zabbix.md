@@ -48,12 +48,16 @@ sudo apt update
 sudo apt install postgresql-13
 systemctl status postgresql 
 ```
-Тут вводим пароль два раза и запоминаем, он нам еще пригодиться, его нужно будет ввести в настройках файла конфигурации заббикса. 
-Далее:создаем базу данных и пользователя
+Создаем пользователя вводим пароль два раза и запоминаем, он нам еще пригодиться, его нужно будет ввести в настройках файла конфигурации заббикса. 
+
 ```
-sudo -u postgres createdb -O zabbix zabbix
 sudo -u postgres createuser --pwprompt zabbix
 ```
+Далее:создаем базу данных
+```
+sudo -u postgres createdb -O zabbix zabbix
+```
+
 Устанавливаем заббикс
 ```
 wget https://repo.zabbix.com/zabbix/6.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.0-4+ubuntu22.04_all.deb

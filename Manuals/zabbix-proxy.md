@@ -44,15 +44,20 @@ tail /etc/zabbix/zabbix_proxy.psk
 nano /etc/zabbix/zabbix_proxy.conf
 ```
 
-Меняем следующие значения:
-Server=    ваш ip adresss
-Hostname=  такой же нужно будет прописать на основном сервере
-DBName= /tmp/zabbix_proxy
-TLSConnect=psk
-TLSPSKFile=/etc/zabbix/zabbix_proxy.psk
-TLSPSKIdentity=test  - тут меняйте значение на свое - такое же должно использоваться на серверной части
+Меняем следующие значения:\
+Server=    ваш ip adresss\
+Hostname=  такой же нужно будет прописать на основном сервере\
+DBName= /tmp/zabbix_proxy\
+TLSConnect=psk\
+TLSPSKFile=/etc/zabbix/zabbix_proxy.psk\
+TLSPSKIdentity=test  - тут меняйте значение на свое - такое же должно использоваться на серверной части\
 
+```
+systemctl restart zabbix-proxy
+systemctl enable zabbix-proxy
+```
+Далее на стороне основного zabbix сервера заходим в Administration>Proxies>Create proxy
+Выставляем такой же Proxу name как и hostname у прокси сервера.
+На вкладке encryption выбираем psk и копируем в поля PSK identity и PSK такие же значение как и у прокси.
 
-
-# systemctl restart zabbix-proxy
-# systemctl enable zabbix-proxy
+Все!  

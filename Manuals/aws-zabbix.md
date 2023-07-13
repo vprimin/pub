@@ -90,7 +90,7 @@ server_name     zabbix.skp.kz;
 Далее перезагружаем службу заббикс сервера и добавляем в автозапуск 
 ```
 systemctl restart zabbix-server zabbix-agent nginx php8.1-fpm
-ssystemctl enable zabbix-server zabbix-agent nginx php8.1-fpm
+systemctl enable zabbix-server zabbix-agent nginx php8.1-fpm
 ```
 Если все настроено верно по вашему адресу должен открыться веб-интерфейс Zabbix подписанным SSL сертификатом 
 ```

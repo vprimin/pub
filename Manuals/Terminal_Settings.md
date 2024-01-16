@@ -23,16 +23,25 @@ curl https://getmic.ro | bash
 
 sudo mv micro /usr/local/bin 
 ```
+Если это виртуалка UTM можно переложить в `sudo mv micro /opt/homebrew/bin`
+
+Если будет выходить ошибка 'zsh: bad CPU type in executable:', то запустить команду 
+
+`softwareupdate --install-rosetta`
+
 Oh-my-zsh
 ```
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
 `micro ~/.zshrc` 
-Theme='**bureau**' %% 'mh', 'dst' %%
+Theme='**dst**'  (Еще нравятся:  'mh' и 'bureau' )
 [Каталог тем](https://github.com/ohmyzsh/ohmyzsh/wiki/Themes#gallifrey)
 `plugins=(sudo macos sublime)`
-fig.io
+
+Fig+iTerm2+Warp
 ```
+brew install --cask fig
+brew install --cask iterm2
 brew install --cask warp
 ```
 Warp

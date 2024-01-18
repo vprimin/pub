@@ -1,5 +1,7 @@
 ![thb](https://github.com/vprimin/pub/blob/main/Manuals/images/iterm.png)
 
+![](https://youtu.be/VH78V7dXwsE)
+
 Ставим Homebrew командой
 ```
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"

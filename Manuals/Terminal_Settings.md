@@ -39,7 +39,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 `micro ~/.zshrc` 
 
 `plugins=(sudo macos sublime)`
-`ZSH_THEME='**dst**'`  
+`ZSH_THEME='dst'`  
 *(Еще нравятся:  'mh' и 'bureau' )*
 [Полный каталог тем](https://github.com/ohmyzsh/ohmyzsh/wiki/Themes#gallifrey)
 
@@ -50,3 +50,8 @@ brew install --cask fig
 brew install --cask iterm2
 brew install --cask warp
 ```
+
+*** 
+еще я меняю иконку для iTerm2, но это уже 
+Вот [тут](https://github.com/jasonlong/iterm2-icons) инструкция
+И устанавливаю шрифт для монохромного текста [Source Code Pro](https://fonts.google.com/specimen/Source+Code+Pro) и в настройках iterm2 указываю использовать этот шрифт

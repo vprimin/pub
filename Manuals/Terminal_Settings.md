@@ -1,3 +1,5 @@
+![thb](https://github.com/vprimin/pub/blob/main/Manuals/images/iterm.png)
+
 Ставим Homebrew командой
 ```
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -33,15 +35,18 @@ Oh-my-zsh
 ```
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
+Редактируем настройки:
 `micro ~/.zshrc` 
-Theme='**dst**'  (Еще нравятся:  'mh' и 'bureau' )
-[Каталог тем](https://github.com/ohmyzsh/ohmyzsh/wiki/Themes#gallifrey)
-`plugins=(sudo macos sublime)`
 
+`plugins=(sudo macos sublime)`
+`ZSH_THEME='**dst**'`  
+*(Еще нравятся:  'mh' и 'bureau' )*
+[Полный каталог тем](https://github.com/ohmyzsh/ohmyzsh/wiki/Themes#gallifrey)
+
+Далее ставим
 Fig+iTerm2+Warp
 ```
 brew install --cask fig
 brew install --cask iterm2
 brew install --cask warp
 ```
-Warp
